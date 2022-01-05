@@ -42,48 +42,9 @@ sudo ~/video-app/src/release/load_sxpf.sh framesize=$((0x1000000)) buffers=31
 #Tue Nov 16 11:43:54 2021 #109: card=0 ch=0  vs=4161536, 1920x1080, 29.99fps, start=0x00000032f4a3d0b1, end=0x00000032f4b4cd40, sum = 0x00ff00ff
 
 
-##################
-# Change FrameSync #
-##################
+# Internal Trigger (1FPS)
+# ~/video-app/src/release/sxpftrigger 0 -c0x1 -f1 -e1 -pH -t cont
 
-sleep 5
-~/video-app/src/release/sxpfapp --card 0 --channel 0 -d0x1e -l8 -a 100
+# External Trigger
+# ~/video-app/src/release/sxpftrigger 0 -c0x1 -t ext
 
-# Get FrameSync
-sleep 1
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 0 0x43 0x10 0x00 0x02 0x02
-sleep 0.1
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 0 0x43 0x10 0x00 0x11 0x11
-sleep 0.1
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 6
-sleep 0.1
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 13
-
-# Set FrameSync On
-sleep 5
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 0 0x43 0x11 0x00 0x0b 0x0b
-sleep 0.1
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 0 0x43 0x11 0x00 0x11 0x00 0x9a 0x09 0x2b 0x01 0x00 0x00 0x00 0x01 0xa9
-
-# Get Command Status
-sleep 5
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 0 0x43 0x05 0x00 0x01 0x01
-sleep 0.1
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 0 0x43 0x05 0xff
-sleep 0.1
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 7
-sleep 1
-
-# Get FrameSync
-sleep 5
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 0 0x43 0x10 0x00 0x02 0x02
-sleep 0.1
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 0 0x43 0x10 0x00 0x11 0x11
-sleep 0.1
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 6
-sleep 0.1
-~/video-app/src/release/sxpfi2c -f0 0 0 0x84 13
-
-
-sleep 5
-~/video-app/src/release/sxpfapp --card 0 --channel 0 -d0x1e -l8 -a 100 #-q  #  -a 100
