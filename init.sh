@@ -26,10 +26,16 @@
 sudo ~/video-app/src/release/load_sxpf.sh framesize=$((0x1000000)) buffers=31
 
 # init camera
-~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 0 -ini conf/conf_with_trigger.ini --execute 0
-#~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 0 -ini conf/conf.ini --execute 1
-#~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 1 -ini conf/conf.ini --execute 0
-#~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 1 -ini conf/conf.ini --execute 1
+~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 0 -ini conf/conf_dual.ini --execute 0
+~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 0 -ini conf/conf_dual.ini --execute 1
+# ~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 1 -ini conf/conf_dual.ini --execute 0
+# ~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 1 -ini conf/conf_dual.ini --execute 0
+
+# ~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 0 -ini conf/conf_with_trigger.ini --execute 0
+# ~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 0 -ini conf/conf_with_trigger.ini --execute 1
+# ~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 1 -ini conf/conf_with_trigger.ini --execute 0
+# ~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 1 -ini conf/conf_with_trigger.ini --execute 1
+
 
 # start record
 #~/video-app/src/release/sxpfapp --card 0 --channel 0 -d0x1e -l8 -q -a 100
