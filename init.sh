@@ -33,7 +33,7 @@ sudo ~/video-app/src/release/load_sxpf.sh framesize=$((0x1000000)) buffers=31
 
 # ~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 0 -ini conf/conf_with_trigger.ini --execute 0
 # ~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 0 -ini conf/conf_with_trigger.ini --execute 1
-# ~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 1 -ini conf/conf_with_trigger.ini --execute 0
+~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 1 -ini conf/conf_with_trigger.ini --execute 0
 # ~/video-app/src/release/sxpf-init-sequence /dev/sxpf0 -port 1 -ini conf/conf_with_trigger.ini --execute 1
 
 
@@ -43,14 +43,9 @@ sudo ~/video-app/src/release/load_sxpf.sh framesize=$((0x1000000)) buffers=31
 #~/video-app/src/release/sxpfapp --card 0 --channel 4 -d0x1e -l8 -q
 #~/video-app/src/release/sxpfapp --card 0 --channel 6 -d0x1e -l8 -q
 
-# Result:
-# sxpfapp receives frames
-#Tue Nov 16 11:43:54 2021 #109: card=0 ch=0  vs=4161536, 1920x1080, 29.99fps, start=0x00000032f4a3d0b1, end=0x00000032f4b4cd40, sum = 0x00ff00ff
-
-
 # Internal Trigger (1FPS)
 # ~/video-app/src/release/sxpftrigger 0 -c0x1 -f1 -e1 -pH -t cont
 
 # External Trigger
 # ~/video-app/src/release/sxpftrigger 0 -c0x1 -t ext
-
+# ~/video-app/src/release/sxpftrigger 0 -f 100 -c0xf -m 10 -t extmul -e 1 -p H

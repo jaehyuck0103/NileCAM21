@@ -95,8 +95,8 @@ def get_control_value(ch: int, control_name: str):
 
 def main():
     ch = 0
-    # show_sxpfinfo()
-    # get_firmware_ver(ch)
+    show_sxpfinfo()
+    get_firmware_ver(ch)
 
     """
     print("\nframe_sync")
@@ -119,10 +119,12 @@ def main():
     get_control_value(ch, "exposure_time")
     """
 
+    """
     print("\nHDR on")
     get_control_value(ch, "hdr")
     set_control_value(ch, "hdr", 1)
     get_control_value(ch, "hdr")
+    """
 
     # deinit_camera(ch)
     # init_camera(ch)
